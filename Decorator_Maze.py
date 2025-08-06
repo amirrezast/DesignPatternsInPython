@@ -4,9 +4,9 @@ class Beverage:
         self._cost = cost
 
     def cost(self):
-        print("You must implement cost() in subclass.")
+        raise NotImplementedError
     def get_description(self):
-        raise Not
+        raise NotImplementedError
 
 
 class AddOnDecorator(Beverage):
@@ -14,12 +14,25 @@ class AddOnDecorator(Beverage):
         self.beverage = beverage
 
     def cost(self):
-        pass
+        raise NotImplementedError
+
+    def get_description(self):
+        raise NotImplementedError
+
+
 
 class Espresso(Beverage):
+    def __init__(self):
+        super().__init__("Espresso", 1)
     def cost(self):
-        return 1
+        return self.cost()
+    def get_description(self):
+        return self.name
+
+
 
 class Milk(AddOnDecorator):
-    def cost(self):
-        return self.beverage.cost() + 2
+    def __init__(self, beverage):
+        super().__init__(beverage)
+
+
